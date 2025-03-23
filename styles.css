@@ -1,0 +1,217 @@
+:root {
+    --card-width: min(430px, 90vw);
+    --card-height: calc(var(--card-width) * 0.627);
+    --form-width: min(400px, 90vw);
+    --primary-color: #00b4db;
+    --secondary-color: #0083b0;
+    --text-color: #333;
+    --spacing-unit: clamp(10px, 2vw, 20px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #1a1a1a, #2c3e50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-unit);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.card-container {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    perspective: 1000px;
+    margin: var(--spacing-unit) 0;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: clamp(10px, 2vw, 15px);
+    padding: calc(var(--spacing-unit) * 1.25);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.card-logo {
+    position: absolute;
+    top: var(--spacing-unit);
+    right: var(--spacing-unit);
+    height: calc(var(--card-height) * 0.18);
+    max-height: 50px;
+}
+
+.card-logo img {
+    height: 100%;
+    width: auto;
+}
+
+.chip {
+    width: calc(var(--card-width) * 0.14);
+    max-width: 60px;
+    margin-bottom: calc(var(--spacing-unit) * 1.25);
+}
+
+.chip img {
+    width: 100%;
+    height: auto;
+}
+
+.card-number {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    letter-spacing: 0.1em;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: auto;
+    word-spacing: 0.2em;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    position: absolute;
+    bottom: var(--spacing-unit);
+    left: var(--spacing-unit);
+    right: var(--spacing-unit);
+}
+
+.card-holder, .card-expiry {
+    flex: 1;
+}
+
+.magnetic-strip {
+    background: #000;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.cvv-container {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+.form-container {
+    width: var(--form-width);
+    background: white;
+    padding: calc(var(--spacing-unit) * 1.5);
+    border-radius: clamp(10px, 2vw, 15px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: calc(var(--spacing-unit) * 1.25);
+}
+
+.form-row {
+    display: flex;
+    gap: var(--spacing-unit);
+}
+
+label {
+    display: block;
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+input {
+    width: 100%;
+    padding: clamp(8px, 2vw, 12px);
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: clamp(14px, 2vw, 16px);
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+button {
+    width: 100%;
+    padding: clamp(12px, 2.5vw, 15px);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: clamp(14px, 2vw, 16px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        margin-top: calc(var(--spacing-unit) * 2);
+    }
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 0.75);
+    }
+
+    .card-info {
+        flex-direction: row;
+        gap: calc(var(--spacing-unit) * 1);
+        font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+    }
+
+    .card-number {
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        margin-bottom: calc(var(--spacing-unit) * 2);
+    }
+}
