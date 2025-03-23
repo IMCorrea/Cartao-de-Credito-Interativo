@@ -5,7 +5,7 @@
     --primary-color: #00b4db;
     --secondary-color: #0083b0;
     --text-color: #333;
-    --spacing-unit: clamp(10px, 2vw, 20px);
+    --spacing-unit: clamp(20px, 2vw, 20px);
 }
 
 * {
