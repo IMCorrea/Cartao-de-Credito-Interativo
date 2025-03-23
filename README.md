@@ -31,4 +31,4 @@ Um formulário moderno e interativo para cartão de crédito com animações 3D 
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/IMCorrea/cartao-credito-interativo.git
+git clone https://github.com/IMCorrea/Cartao-de-Credito-Interativo.git
